@@ -1,4 +1,4 @@
-FROM roundcube/roundcubemail:1.5.x-apache
+FROM roundcube/roundcubemail:1.6.x-apache
 #COPY composer.json-1.4 /usr/src/roundcubemail/composer.json
 
 RUN set -ex; \
@@ -8,9 +8,9 @@ RUN set -ex; \
     #; \
     \
 # TODO FIXME sometimes getcomposer.org is _not_ resolvable
-    curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer; \
-    mv /usr/src/roundcubemail/composer.json-dist /usr/src/roundcubemail/composer.json; \
-    chown -R www-data:www-data /usr/src/roundcubemail/; \
+    #curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer; \
+    #mv /usr/src/roundcubemail/composer.json-dist /usr/src/roundcubemail/composer.json; \
+    #chown -R www-data:www-data /usr/src/roundcubemail/; \
     \
     composer \
         --working-dir=/usr/src/roundcubemail/ \
@@ -23,5 +23,5 @@ RUN set -ex; \
     ; \
     \
     rm -rf /var/lib/apt/lists/* \
-    rm -rf /usr/src/php.tar.xz \
-    rm -rf /root/.composer/cache/ /usr/bin/composer \
+        /usr/src/php.tar.xz \
+        /root/.composer/cache/
